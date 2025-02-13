@@ -71,7 +71,6 @@ class Solver(object):
         print("Model loaded!")
 
     def prune_model(self, amount=0.3):
-        # Applyng only to layer nn.Conv2d e nn.Linear
         for name, module in self.net.named_modules():
             if isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
                 prune.l1_unstructured(module, name='weight', amount=amount)
@@ -81,32 +80,18 @@ class Solver(object):
         self.save_model()
         print("Pruning completed!")
 
-    def visualize_sample(self, dataset, save_dir="visualizations", alpha=0.5): # TO DO but HPC doesn't work
-        os.makedirs(save_dir, exist_ok=True) # mkdir if doens't exist
-        self.net.eval()
-        
-        idx = random.randint(0, len(dataset) - 1)
-        sample = dataset[idx]
-        image, true_mask = sample["image"], sample["mask"]
-
-        to_pil = transforms.ToPILImage()
-        image_pil = to_pil(image.cpu()) 
-        true_mask_np = true_mask.numpy() 
-
-        with torch.no_grad():
-            image = image.unsqueeze(0).to(self.device)
-            output = self.net(image)
-            pred_mask = torch.argmax(output, dim=1).cpu().squeeze().numpy()
-
-        image_pil.save(os.path.join(save_dir, f"sample_{idx}_original.png"))
-        
-        mask_pil = Image.fromarray((true_mask_np * 255).astype("uint8"))
-        mask_pil.save(os.path.join(save_dir, f"sample_{idx}_ground_truth.png"))
-        
-        pred_pil = Image.fromarray((pred_mask * 255).astype("uint8"))
-        pred_pil.save(os.path.join(save_dir, f"sample_{idx}_prediction.png"))
-
-        print(f"Immagini salvate in {save_dir}")
+    # TO CHECK because HPC doesn't work (as always!)
+    def visualize_and_save_random_sample(self):
+        save_path = os.path.join(self.args.checkpoint_path, "visualization")
+    
+        index = random.randint(0, len(self.test_set) - 1)
+        sample = self.test_set[index]
+    
+        file_path = os.path.join(save_path, f"sample_{index}.png")
+        fig = self.test_set.plot(sample, save_path=file_path) # Method returns a plot of matplotlib
+        fig.savefig(file_path, bbox_inches="tight")
+        plt.close(fig)
+        print(f"Sample saved at: {file_path}")
 
     
     def train(self):
