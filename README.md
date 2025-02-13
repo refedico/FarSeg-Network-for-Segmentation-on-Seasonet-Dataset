@@ -10,7 +10,10 @@ This repository contains all the necessary files for training, testing, and eval
 - **`solver.py`**: Contains the core logic for training and testing the model. This file manages data loading, model training, evaluation, and saving checkpoints.
 - **`model.py`**: Defines the neural network architecture used in the project.
 - **`utils.py`**: Contains helper functions used throughout the project, such as data processing and other utilities.
-- **`test.ipynb`**: A Jupyter Notebook designed for running inference tests and visualizing the results, including model predictions and image outputs.
+- **Directories:**
+  - **`checkpoints/`**: Stores model checkpoints saved during training.
+  - **`visualizations/`**: Contains generated plots and visualized results.
+  - **`runs/`**: Holds logs and metadata for tracking training experiments.
 
 ## How to Clone and Launch the Repository
 
