@@ -17,11 +17,11 @@ def calculate_metrics(pred, target, num_classes=33):
 
 def load_or_generate_indices(file_path, dataset_size, subset_size):
     if os.path.exists(file_path):
-        print(f"Caricando gli indici da {file_path}...")
+        print(f"Loading indexes from {file_path}...")
         with open(file_path, "r") as f:
             return [int(line.strip()) for line in f]
     else:
-        print(f"Generando nuovi indici casuali per {file_path}...")
+        print(f"Generte new random indexes in {file_path}...")
         indices = random.sample(range(dataset_size), subset_size)
         with open(file_path, "w") as f:
             f.writelines(f"{idx}\n" for idx in indices)
@@ -29,7 +29,7 @@ def load_or_generate_indices(file_path, dataset_size, subset_size):
 
 def create_subsets(train_set, test_set, dataset_path, season, train_percentage, test_percentage, mixed_test_set, sum_test_set = None, spr_test_set = None, fall_test_set = None):
     if season not in {"Summer", "Spring", "Fall"}:
-        print("Errore: stagione non valida")
+        print("Error: Invalid season")
         return None, None
     
     # Standard creation of names for these configuration files
