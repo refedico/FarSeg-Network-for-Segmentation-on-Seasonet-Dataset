@@ -2,14 +2,14 @@
 
 ## Introduction
 
-This repository contains all the necessary files for training, testing, and evaluating a deep learning model. Below is a guide on how to explore the repository and understand the key components.
+This repository contains all the necessary files for training, testing, and evaluating a FarSeg model for segmentation. Below is a guide on how to explore the repository and understand the key components.
 
 ## Repository Structure
 
-- **`main.py`**: The entry point of the project. This script is responsible for launching the entire process, including training and testing.
+- **`main.py`**: The entry point of the project. This script is responsible for launching the entire process, including training and testing with the various options to pass via command line.
 - **`solver.py`**: Contains the core logic for training and testing the model. This file manages data loading, model training, evaluation, and saving checkpoints.
 - **`model.py`**: Defines the neural network architecture used in the project.
-- **`utils.py`**: Contains helper functions used throughout the project, such as data processing, logging, and other utilities.
+- **`utils.py`**: Contains helper functions used throughout the project, such as data processing and other utilities.
 - **`test.ipynb`**: A Jupyter Notebook designed for running inference tests and visualizing the results, including model predictions and image outputs.
 
 ## How to Clone and Launch the Repository
@@ -41,15 +41,12 @@ This repository contains all the necessary files for training, testing, and eval
 
    - You can adjust the neural network by editing `model.py`.
 
-6. **Use helper functions**:
 
-   - If you need extra utilities, check `utils.py` for functions that facilitate various tasks.
-
-7. **Run inference and visualize results**:
+6. **Run inference and visualize results**:
 
    - Open `test.ipynb` in Jupyter Notebook to run inference on images and visualize the model's performance.
 
 ## Conclusion
 
-This repository is structured to facilitate seamless training, testing, and evaluation of deep learning models. Feel free to explore and modify the scripts as needed!
+This repository is structured to facilitate seamless training, testing, and evaluation. Feel free to explore and modify the scripts as needed!
 
