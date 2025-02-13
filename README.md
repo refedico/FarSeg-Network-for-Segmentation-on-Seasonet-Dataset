@@ -17,8 +17,8 @@ This repository contains all the necessary files for training, testing, and eval
 1. **Clone the repository**:
    
    ```bash
-   git clone <repository_url>
-   cd <repository_name>
+   git clone https://github.com/refedico/FarSeg-Network-for-Segmentation-on-Seasonet-Dataset.git
+   cd FarSeg-Network-for-Segmentation-on-Seasonet-Dataset
    ```
 
 2. **Set up the environment**:
