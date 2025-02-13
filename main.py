@@ -121,13 +121,13 @@ def main(args):
     # Solver initialization
     solver = Solver(train_loader=train_loader,
                     test_loader=test_loader,
-                    val_loader=test_loader,
+                    val_loader=val_loader,
                     device=device,
                     writer=writer,
                     args=args)
 
-    # Visualization of a (random) sample   TO DO!!!
-    #solver.visualize_sample(train_loader.dataset)
+    # Visualization of a (random) sample
+    solver.visualize_sample()
 
     # Train and test model
     solver.train()
