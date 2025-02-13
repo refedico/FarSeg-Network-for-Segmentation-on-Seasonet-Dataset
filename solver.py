@@ -81,7 +81,7 @@ class Solver(object):
         self.save_model()
         print("Pruning completed!")
 
-    def visualize_sample(self, dataset, save_dir="visualizations", alpha=0.5):
+    def visualize_sample(self, dataset, save_dir="visualizations", alpha=0.5): # TO DO but HPC doesn't work
         os.makedirs(save_dir, exist_ok=True) # mkdir if doens't exist
         self.net.eval()
         
