@@ -45,10 +45,6 @@ This repository contains all the necessary files for training, testing, and eval
    - You can adjust the neural network by editing `model.py`.
 
 
-6. **Run inference and visualize results**:
-
-   - Open `test.ipynb` in Jupyter Notebook to run inference on images and visualize the model's performance.
-
 ## Conclusion
 
 This repository is structured to facilitate seamless training, testing, and evaluation. Feel free to explore and modify the scripts as needed!
