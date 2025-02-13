@@ -81,16 +81,20 @@ class Solver(object):
         print("Pruning completed!")
 
     # TO CHECK because HPC doesn't work (as always!)
-    def visualize_and_save_random_sample(self):
+    def visualize_and_save_sample(self, index=None):
         save_path = os.path.join(self.args.checkpoint_path, "visualization")
+        os.makedirs(save_path, exist_ok=True)
     
-        index = random.randint(0, len(self.test_set) - 1)
+        if index is None:
+            index = random.randint(0, len(self.test_set) - 1)
+    
         sample = self.test_set[index]
-    
         file_path = os.path.join(save_path, f"sample_{index}.png")
-        fig = self.test_set.plot(sample, save_path=file_path) # Method returns a plot of matplotlib
+    
+        fig = self.test_set.plot(sample, save_path=file_path)  # Method returns a plot of matplotlib
         fig.savefig(file_path, bbox_inches="tight")
         plt.close(fig)
+        
         print(f"Sample saved at: {file_path}")
 
     
