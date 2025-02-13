@@ -13,7 +13,7 @@ This repository contains all the necessary files for training, testing, and eval
 - **Directories:**
   - **`checkpoints/`**: Stores model checkpoints saved during training.
   - **`visualizations/`**: Contains generated plots and visualized results.
-  - **`runs/`**: Holds logs and metadata for tracking training experiments.
+  - **`runs/`**: Holds logs and metadata for tracking training experiments (tensorboard data).
 
 ## How to Clone and Launch the Repository
 
