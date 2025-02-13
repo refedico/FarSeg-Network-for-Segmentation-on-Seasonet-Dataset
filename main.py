@@ -16,7 +16,7 @@ def get_args():
     parser.add_argument('--run_name', type=str, default="run_1", help='name of current run')
     parser.add_argument('--model_name', type=str, default="first_train", help='name of the model to be saved/loaded')
 
-    parser.add_argument('--epochs', type=int, default=2, help='number of epochs')
+    parser.add_argument('--epochs', type=int, default=10, help='number of epochs')
     parser.add_argument('--validation', type=bool, default=False, help='True if you want validation, False otherwise') # New
     parser.add_argument('--pretrained', type=bool, default=True, help='True if you want pretrained weights, False otherwise') # New
     parser.add_argument('--loss', type=str, default="CrossEntropyLoss", choices=['CrossEntropyLoss', 'DiceLoss', "DiceLoss"],  help='type of loss')
@@ -36,8 +36,8 @@ def get_args():
     parser.add_argument('--pruning', type=float, default=0, help='percentage of weights to be reset, False otherwhise') # New
 
     parser.add_argument('--resume_train', action='store_true', help='load the model from checkpoint before training')
-    parser.add_argument('--train_percentage', type=float, default=0.001, help='percentage of the train dataset to use for training') # New
-    parser.add_argument('--test_percentage', type=float, default=0.0001, help='percentage of the test dataset to use for testing') # New
+    parser.add_argument('--train_percentage', type=float, default=0.1, help='percentage of the train dataset to use for training') # New
+    parser.add_argument('--test_percentage', type=float, default=0.1, help='percentage of the test dataset to use for testing') # New
     parser.add_argument('--season', type=str, default='Summer', help='season to use from the SeasoNet dataset') # New
     parser.add_argument('--flop', type=bool, default=False, help='True to display Multi Adds and parameters number') # New
     parser.add_argument('--mobilenets', type=bool, default=False, help='True to use the mobilenets architecture, False otherwise') # New
@@ -125,9 +125,6 @@ def main(args):
                     device=device,
                     writer=writer,
                     args=args)
-
-    # Visualization of a (random) sample
-    solver.visualize_sample()
 
     # Train and test model
     solver.train()
