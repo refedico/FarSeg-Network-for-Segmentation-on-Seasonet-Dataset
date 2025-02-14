@@ -80,22 +80,33 @@ class Solver(object):
         self.save_model()
         print("Pruning completed!")
 
-    # TO CHECK because HPC doesn't work (as always!)
     def visualize_and_save_sample(self, index=None):
-        save_path = os.path.join(self.args.checkpoint_path, "visualization")
+        save_path = "visualizations"
         os.makedirs(save_path, exist_ok=True)
-    
+
         if index is None:
-            index = random.randint(0, len(self.test_set) - 1)
-    
-        sample = self.test_set[index]
+           index = random.randint(0, len(self.test_loader.dataset) - 1)
+
+        batch_size = self.test_loader.batch_size
+        batch_index = index // batch_size  # Batch index in the DataLoader
+        sample_index = index % batch_size  # Sample index within the batch
+
+        for i, batch in enumerate(self.test_loader):
+            if i == batch_index:
+                sample = {
+                "image": batch["image"][sample_index],
+                "mask": batch["mask"][sample_index]
+            } # as expected by the plot method
+                break
+
         file_path = os.path.join(save_path, f"sample_{index}.png")
-    
-        fig = self.test_set.plot(sample, save_path=file_path)  # Method returns a plot of matplotlib
+
+        fig = self.test_loader.dataset.dataset.plot(sample, show_titles=True, s$
         fig.savefig(file_path, bbox_inches="tight")
         plt.close(fig)
-        
         print(f"Sample saved at: {file_path}")
+
+
 
     
     def train(self):
