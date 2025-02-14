@@ -80,7 +80,7 @@ class Solver(object):
         self.save_model()
         print("Pruning completed!")
 
-    def visualize_and_save_sample(self, index=None):
+    def visualize_and_save_sample(self, index=None, overlay=False):
         save_path = "visualizations"
         os.makedirs(save_path, exist_ok=True)
 
@@ -97,10 +97,19 @@ class Solver(object):
                 "image": batch["image"][sample_index],
                 "mask": batch["mask"][sample_index]
             } # as expected by the plot method
+                input_image = batch["image"][sample_index].unsqueeze(0).to(self.device)
                 break
 
         file_path = os.path.join(save_path, f"sample_{index}.png")
 
+        if overlay:
+            self.net.eval()
+            with torch.no_grad():
+                output = self.net(input_image)
+                pred_mask = torch.argmax(output, dim=1).squeeze(0).cpu()
+        
+            sample["prediction"] = pred_mask
+        
         fig = self.test_loader.dataset.dataset.plot(sample, show_titles=True, s$
         fig.savefig(file_path, bbox_inches="tight")
         plt.close(fig)
