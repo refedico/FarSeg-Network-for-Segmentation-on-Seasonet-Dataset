@@ -91,7 +91,7 @@ class DepthwiseSeparableConv(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0):
         super(DepthwiseSeparableConv, self).__init__()
         self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=kernel_size, 
-                                   stride=stride, padding=padding, groups=in_channels, bias=False)
+                                   stride=stride, padding=padding, groups=in_channels, bias=False) # Each input channel is treated separately with its own convolution with groups=in_channel
         self.pointwise = nn.Conv2d(in_channels, out_channels, kernel_size=1, bias=False)
 
     def forward(self, x):
