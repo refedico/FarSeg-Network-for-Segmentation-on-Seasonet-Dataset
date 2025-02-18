@@ -106,7 +106,7 @@ class Solver(object):
             self.net.eval()
             with torch.no_grad():
                 output = self.net(input_image)
-                pred_mask = torch.argmax(output, dim=1).squeeze(0).to(self.device)
+                pred_mask = torch.argmax(output, dim=1).squeeze(0).cpu()
         
             sample["prediction"] = pred_mask
         
