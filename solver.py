@@ -106,11 +106,11 @@ class Solver(object):
             self.net.eval()
             with torch.no_grad():
                 output = self.net(input_image)
-                pred_mask = torch.argmax(output, dim=1).squeeze(0).cpu()
+                pred_mask = torch.argmax(output, dim=1).squeeze(0).to(self.device)
         
             sample["prediction"] = pred_mask
         
-        fig = self.test_loader.dataset.dataset.plot(sample, show_titles=True, s$
+        fig = self.test_loader.dataset.dataset.plot(sample, show_titles=True, show_legend=True, suptitle=f"Sample {index}")
         fig.savefig(file_path, bbox_inches="tight")
         plt.close(fig)
         print(f"Sample saved at: {file_path}")
